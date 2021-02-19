@@ -1,13 +1,13 @@
 const inputField = document.getElementById('activity');
 let addButton = document.getElementById('add');
 let listContainer = document.getElementById('list-container');
-
+let clear = document.getElementById('clear');
 
 inputField.addEventListener('keyup', function (e) {
 
     //This indicates that the if the event is by the "enter" key (key 13) then do the following:
-    if(e.keyCode == 13) {
-    
+    if (e.keyCode == 13) {
+
         //Create a new div
         let newActivity = document.createElement('div');
         //Adding the new div to the wrapper that surrounds the input field. 
@@ -95,10 +95,35 @@ inputField.addEventListener('keyup', function (e) {
 
             newActivity.style.textDecoration = "line-through";
 
+
+            //Create an event listener to the words "clear completed" in the counter section so that only the activities that have been completed will be removed
+            clear.addEventListener('click', function () {
+
+                //If the check mark is display:block
+                if(check.style.display = "block") {
+
+                    //Then remove the newActivity div
+                    newActivity.style.display = "none";
+
+                }
+
+
+            })
+
+
+
+
+
         })
-  
+
+
+
+
+
+
+
+
+
 
     }
 })
-
-
