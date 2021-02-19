@@ -89,8 +89,8 @@ inputField.addEventListener('keyup', function (e) {
 
             circle.style.display = "none";
             check.style.display = "block";
-            newActivity.appendChild(check);
-            newActivity.appendChild(answerWrap);
+            circleWrap.appendChild(check);
+            circleWrap.appendChild(answerWrap);
             newActivity.appendChild(cross);
 
             newActivity.style.textDecoration = "line-through";
