@@ -70,9 +70,16 @@ input {
 }
 
 .active {
-    display:flex;
-    border:hsl(0, 3%, 87%);
+    display:block;
+}
 
+.activeCircle {
+    display:block;
+    text-decoration: line-through;
+}
+
+.remove {
+    display:none;
 }
 
 .counter-wrap {

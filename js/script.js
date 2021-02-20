@@ -1,17 +1,22 @@
 const inputField = document.getElementById('activity');
-let addButton = document.getElementById('add');
 let listContainer = document.getElementById('list-container');
 let clear = document.getElementById('clear');
+let counter = document.getElementById('counter');
+//Getting at all the new created divs which have the added class of "active"
+let newDiv = document.querySelectorAll('.active');
+let activeClassLength = document.querySelectorAll('.active').length;
+
 
 inputField.addEventListener('keyup', function (e) {
 
     //This indicates that the if the event is by the "enter" key (key 13) then do the following:
     if (e.keyCode == 13) {
 
+        if(inputField.value !== ' ') {
         //Create a new div
         let newActivity = document.createElement('div');
         //Adding the new div to the wrapper that surrounds the input field. 
-        listContainer.appendChild(newActivity);
+        listContainer.append(newActivity);
 
 
         //STYLE THE NEW DIV
@@ -31,7 +36,7 @@ inputField.addEventListener('keyup', function (e) {
         check.setAttribute('src', '/img/check.png');
         check.setAttribute('width', '20');
         check.setAttribute('height', '20');
-        newActivity.appendChild(check);
+        newActivity.append(check);
         check.style.display = 'none';
 
 
@@ -43,21 +48,22 @@ inputField.addEventListener('keyup', function (e) {
         circle.setAttribute('src', '/img/circle.png');
         circle.setAttribute('width', '20');
         circle.setAttribute('height', '20');
+        circle.classList.add('activeCircle');
         //Place within the circleWrap div the IMG icon
-        circleWrap.appendChild(circle);
+        circleWrap.append(circle);
         //Used flexbox in order to position both the circle icon and the answer text towards the left of the new div
         circleWrap.style.display = "flex";
         circleWrap.style.justifyContent = "flex-start";
         circleWrap.style.alignItems = "center";
         //Attaching the circle icon wrapper (circleWrap) -- with the circle incon inside of it, to the new div
-        newActivity.appendChild(circleWrap);
+        newActivity.append(circleWrap);
 
 
         //create a div wrapper around the input field answer -- which will help to place this element in the circle image wrapper
         //Placing this element in this order of this event listener function so that the answer text will come after (to the right of) the circle icon in the div
         let answerWrap = document.createElement('div');
         answerWrap.style.marginLeft = "10px";
-        circleWrap.appendChild(answerWrap);
+        circleWrap.append(answerWrap);
 
         //The new div will contain the answer that's been typed into the input field
         let answer = inputField.value;
@@ -66,6 +72,8 @@ inputField.addEventListener('keyup', function (e) {
         //This clears the input field once it's been submitted.
         inputField.value = ' ';
 
+    
+
 
         //Cross icon
         let cross = document.createElement('IMG');
@@ -73,13 +81,31 @@ inputField.addEventListener('keyup', function (e) {
         cross.setAttribute('width', '10');
         cross.setAttribute('height', '10');
         //Attaching the cross icon to the new div
-        newActivity.appendChild(cross);
+        newActivity.append(cross);
+
+
+
+        let activeClassLength = document.querySelectorAll('.active').length;
+        //This tells the counter that the display text will be the number of divs with "active" classes
+        counter.innerText = activeClassLength + " items left";
 
 
         //Add an event listener that will remove the newActivity div when the cross icon is clicked
         cross.addEventListener('click', function () {
 
+            let activeClassLength = document.querySelectorAll('.active').length;
+
             newActivity.style.display = "none";
+            newActivity.classList.remove = "active";
+
+            if (activeClassLength > 0) {
+
+                activeClassLength = activeClassLength - 1;
+                counter.innerText = activeClassLength + " items left";
+
+            }
+
+
 
         })
 
@@ -87,12 +113,12 @@ inputField.addEventListener('keyup', function (e) {
         //Add an event listener to the circle so that when clicked it will show the check mark and put line through the word
         circle.addEventListener('click', function () {
 
+
             circle.style.display = "none";
             check.style.display = "block";
-            circleWrap.appendChild(check);
-            circleWrap.appendChild(answerWrap);
-            newActivity.appendChild(cross);
 
+            circleWrap.append(check);
+            circleWrap.append(answerWrap);
             newActivity.style.textDecoration = "line-through";
 
 
@@ -100,7 +126,7 @@ inputField.addEventListener('keyup', function (e) {
             clear.addEventListener('click', function () {
 
                 //If the check mark is display:block
-                if(check.style.display = "block") {
+                if (check.style.display = "block") {
 
                     //Then remove the newActivity div
                     newActivity.style.display = "none";
@@ -110,19 +136,10 @@ inputField.addEventListener('keyup', function (e) {
 
             })
 
-
-
-
-
         })
 
 
-
-
-
-
-
-
+        }
 
 
     }
