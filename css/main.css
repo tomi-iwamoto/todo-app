@@ -73,11 +73,6 @@ input {
     display:block;
 }
 
-.activeCircle {
-    display:block;
-    text-decoration: line-through;
-}
-
 .remove {
     display:none;
 }
@@ -127,14 +122,41 @@ input {
 }
 
 
+/*-----------classlist styles-----------*/
+
+.new-div-style {
+    background-color: white;
+    padding:15px 10px;
+    width: 80%;
+    border-bottom: hsl(0, 3%, 87%) solid 1px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 
+.icon {
+    width: 20px;
+    height:20px;
+}
 
+.circle-icon-wrapper {
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+}
 
+.cross-icon {
+    width: 10px;
+    height: 10px;
+}
 
+.activeCircle {
+    display:block;
+    text-decoration: line-through;
+}
 
-
-
+/*-------footer--------*/
 
 
 footer {

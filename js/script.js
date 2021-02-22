@@ -13,6 +13,7 @@ inputField.addEventListener('keyup', function (e) {
     if (e.keyCode == 13) {
 
         if(inputField.value !== ' ') {
+            
         //Create a new div
         let newActivity = document.createElement('div');
         //Adding the new div to the wrapper that surrounds the input field. 
@@ -20,51 +21,43 @@ inputField.addEventListener('keyup', function (e) {
 
 
         //STYLE THE NEW DIV
-        newActivity.style.backgroundColor = "white";
-        newActivity.style.padding = "15px 10px 15px 10px";
-        newActivity.style.width = "80%";
+        newActivity.classList.add('new-div-style');
         newActivity.classList.add('active');
-        newActivity.style.borderBottom = "hsl(0, 3%, 87%) solid 1px";
-        newActivity.style.display = "flex";
-        newActivity.style.justifyContent = "space-between";
-        newActivity.style.alignItems = "center";
+      
 
-
-        //Adding image
-        //check icon
+        //ADDING CHECK ICON
+        //First create the image element
         let check = document.createElement('IMG');
-        check.setAttribute('src', '/img/check.png');
-        check.setAttribute('width', '20');
-        check.setAttribute('height', '20');
+        check.setAttribute('src', 'img/check.png');
+        //Add the new check icon image to the new appended div
         newActivity.append(check);
+        check.classList.add('icon');
         check.style.display = 'none';
 
 
-        //circle icon
-        //First create a wrapper to surround the new IMG element
+        //ADDING CIRCLE ICON
+        //First create a wrapper to surround the new IMG element which is the circle icon
         let circleWrap = document.createElement('div');
-        //Create the new IMG element that will be the circle icon
+        //Create the new IMG element which will be the circle icon
         let circle = document.createElement('IMG');
-        circle.setAttribute('src', '/img/circle.png');
-        circle.setAttribute('width', '20');
-        circle.setAttribute('height', '20');
+        //The source of the img will be img/circle.png
+        circle.setAttribute('src', 'img/circle.png');
+        circle.classList.add('icon');
         circle.classList.add('activeCircle');
         //Place within the circleWrap div the IMG icon
         circleWrap.append(circle);
         //Used flexbox in order to position both the circle icon and the answer text towards the left of the new div
-        circleWrap.style.display = "flex";
-        circleWrap.style.justifyContent = "flex-start";
-        circleWrap.style.alignItems = "center";
-        //Attaching the circle icon wrapper (circleWrap) -- with the circle incon inside of it, to the new div
+        circleWrap.classList.add('circle-icon-wrapper');
+        //Attaching the circle icon wrapper (circleWrap) -- which has the circle icon inside of it, to the new div
         newActivity.append(circleWrap);
 
-
+        
+        //GETTING THE VALUE OF THE INPUT FIELD
         //create a div wrapper around the input field answer -- which will help to place this element in the circle image wrapper
         //Placing this element in this order of this event listener function so that the answer text will come after (to the right of) the circle icon in the div
         let answerWrap = document.createElement('div');
         answerWrap.style.marginLeft = "10px";
         circleWrap.append(answerWrap);
-
         //The new div will contain the answer that's been typed into the input field
         let answer = inputField.value;
         //The answerWrap will contain the answer from the input field
@@ -72,14 +65,12 @@ inputField.addEventListener('keyup', function (e) {
         //This clears the input field once it's been submitted.
         inputField.value = ' ';
 
-    
 
 
-        //Cross icon
+        //ADDING CROSS ICON
         let cross = document.createElement('IMG');
-        cross.setAttribute('src', '/img/cross.png');
-        cross.setAttribute('width', '10');
-        cross.setAttribute('height', '10');
+        cross.setAttribute('src', 'img/cross.png');
+        cross.classList.add('cross-icon');
         //Attaching the cross icon to the new div
         newActivity.append(cross);
 
@@ -90,29 +81,18 @@ inputField.addEventListener('keyup', function (e) {
         counter.innerText = activeClassLength + " items left";
 
 
-        //Add an event listener that will remove the newActivity div when the cross icon is clicked
+        //Add an event listener that will remove individual newActivity div when the cross icon is clicked
         cross.addEventListener('click', function () {
-
-            let activeClassLength = document.querySelectorAll('.active').length;
 
             newActivity.style.display = "none";
             newActivity.classList.remove = "active";
 
-            if (activeClassLength > 0) {
-
-                activeClassLength = activeClassLength - 1;
-                counter.innerText = activeClassLength + " items left";
-
-            }
-
-
-
         })
 
 
-        //Add an event listener to the circle so that when clicked it will show the check mark and put line through the word
+        //Add an event listener to the circle so that when clicked it will show the check mark and put a line through the word
         circle.addEventListener('click', function () {
-
+            
 
             circle.style.display = "none";
             check.style.display = "block";
@@ -132,7 +112,6 @@ inputField.addEventListener('keyup', function (e) {
                     newActivity.style.display = "none";
 
                 }
-
 
             })
 
