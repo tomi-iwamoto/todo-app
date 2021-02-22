@@ -14,13 +14,13 @@ inputField.addEventListener('keyup', function (e) {
 
         if(inputField.value !== ' ') {
 
-        //Create a new div
+        //CREATE NEW DIV
         let newActivity = document.createElement('div');
         //Adding the new div to the wrapper that surrounds the input field. 
         listContainer.append(newActivity);
 
 
-        //STYLE THE NEW DIV
+        //Style the new div
         newActivity.classList.add('new-div-style');
         newActivity.classList.add('active');
       
@@ -43,8 +43,10 @@ inputField.addEventListener('keyup', function (e) {
         //The source of the img will be img/circle.png
         circle.setAttribute('src', 'img/circle.png');
         circle.classList.add('icon');
-        circle.classList.add('activeCircle');
-        //Place within the circleWrap div the IMG icon
+        circle.classList.add('show');
+
+
+        //PLACING IMG ICON INSIDE THE CIRCLE WRAP DIV
         circleWrap.append(circle);
         //Used flexbox in order to position both the circle icon and the answer text towards the left of the new div
         circleWrap.classList.add('circle-icon-wrapper');
@@ -66,7 +68,6 @@ inputField.addEventListener('keyup', function (e) {
         inputField.value = ' ';
 
 
-
         //ADDING CROSS ICON
         let cross = document.createElement('IMG');
         cross.setAttribute('src', 'img/cross.png');
@@ -74,52 +75,61 @@ inputField.addEventListener('keyup', function (e) {
         //Attaching the cross icon to the new div
         newActivity.append(cross);
 
+                //Add an event listener that will remove individual newActivity div when the cross icon is clicked
+                cross.addEventListener('click', function () {
 
+                    newActivity.style.display = "none";
+                    newActivity.classList.remove = "active";
 
+                })
+                
+        
+        //GETTING THE INNER TEXT OF THE COUNTER
         let activeClassLength = document.querySelectorAll('.active').length;
         //This tells the counter that the display text will be the number of divs with "active" classes
         counter.innerText = activeClassLength + " items left";
 
 
-        //Add an event listener that will remove individual newActivity div when the cross icon is clicked
-        cross.addEventListener('click', function () {
+                //ADDING EVENT LISTENER TO THE CIRCLE ICON
+                //This event listener will take away the circle icon and replace it with the check mark icon
+                //This will also put a strike through line to over the word to indicate a finished activity
+                circle.addEventListener('click', function () {
 
-            newActivity.style.display = "none";
-            newActivity.classList.remove = "active";
+                    circle.style.display = "none";
+                    check.style.display = "block";
 
-        })
+                    circleWrap.append(check);
+                    circleWrap.append(answerWrap);
+                    answerWrap.classList.toggle('strike');
 
+                    //Create an event listener to the words "clear completed" in the counter section so that only the activities that have been completed will be removed
+                    clear.addEventListener('click', function () {
 
-        //Add an event listener to the circle so that when clicked it will show the check mark and put a line through the word
-        circle.addEventListener('click', function () {
-            
+                        //If the check mark is display:block
+                        if (answerWrap.className == "strike") {
 
-            circle.style.display = "none";
-            check.style.display = "block";
+                            //Then remove the newActivity div
+                            newActivity.style.display = "none";
 
-            circleWrap.append(check);
-            circleWrap.append(answerWrap);
-            newActivity.style.textDecoration = "line-through";
+                        } 
 
+                    })
 
-            //Create an event listener to the words "clear completed" in the counter section so that only the activities that have been completed will be removed
-            clear.addEventListener('click', function () {
+                });
 
-                //If the check mark is display:block
-                if (check.style.display = "block") {
+                //ADDING EVENT LISTENER TO THE CHECK MARK ICON
+                //This event listener will remove the check icon and replace it with the circle icon
+                //This will also toggle the strike through style on the activity word. 
+                check.addEventListener('click', function () {
 
-                    //Then remove the newActivity div
-                    newActivity.style.display = "none";
+                    check.style.display = "none";
+                    circle.style.display = "block";
+                    answerWrap.classList.toggle('strike');
 
-                }
+                });
 
-            })
-
-        })
 
 
         }
-
-
     }
 })

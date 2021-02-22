@@ -1,1 +1,0 @@
-need to work on this cross event listener so that I can reduce the number on the counter when actitivies are removed.

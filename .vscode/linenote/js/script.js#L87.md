@@ -1,0 +1,1 @@
+Add a function to count down the number of the counter when activities are crossed out. 

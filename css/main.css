@@ -181,8 +181,11 @@ input {
     height: 10px;
 }
 
-.activeCircle {
+.show {
     display:block;
+}
+
+.strike {
     text-decoration: line-through;
 }
 
