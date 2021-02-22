@@ -16,7 +16,10 @@ main {
 
 header {
     width: 100%;
-    position:relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 header img {
@@ -24,13 +27,30 @@ header img {
     margin:0;
 }
 
+.desktop-img {
+    display:none;
+}
+
 header h1 {
-    position: absolute;
     top:40px;
     left:35px;
     font-family: 'Josefin Sans', sans-serif;
     color:white;
     text-transform: uppercase;
+}
+
+.title-wrap {
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top:40px;
+    left:35px;
+}
+
+#moon {
+    width: 20px;
 }
 
 .input-wrapper {
@@ -55,6 +75,16 @@ input {
     width: 75%;
     border-radius: 5px;
     border:none;
+}
+
+.list-wrapper {
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:184px;
 }
 
 #list-container {
@@ -176,4 +206,123 @@ footer {
 .attribution a {
     text-decoration: none;
     color:gray;
+}
+
+/*------------------------MEDIA QUERIES-----------------*/
+
+@media only screen and (min-width: 768px) {
+
+
+input {
+    width: 50%;
+    padding: 20px 0 20px 35px;
+    font-size: 20px;
+}
+
+.input-wrapper i {
+    left: 190px;
+    top:144px;
+}
+
+.new-div-style {
+    background-color: white;
+    padding:17px 12px;
+    width: 51%;
+    border-bottom: hsl(0, 3%, 87%) solid 1px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-wrap {
+    position: absolute;
+    top: 40px;
+    left:auto;
+    width: 55%;
+}
+
+.icon {
+    width: 20px;
+    height:20px;
+}
+
+.circle-icon-wrapper {
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.cross-icon {
+    width: 10px;
+    height: 10px;
+}
+
+.activeCircle {
+    display:block;
+    text-decoration: line-through;
+}
+
+.counter-wrap {
+    width: 54.5%;
+}
+
+.filter-wrapper {
+    width: 54.5%;
+}
+
+.list-wrapper {
+    top: 200px;
+}
+
+#list-container {
+    font-size: 16px;
+}
+    
+}
+
+
+
+@media only screen and (min-width: 1200px) {
+
+.mobile-img {
+    display:none;
+}
+    
+header {
+    background: url("../img/desktop-light.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height:28.75em;
+}
+
+
+input {
+    width: 25%;
+    position:absolute;
+    top:280px;
+}
+
+.title-wrap {
+    width: 25%;
+    position: relative;
+    top:0;
+    left: 0;
+}
+
+.counter-wrap {
+    width: 27%;
+}
+
+.new-div-style {
+    width: 25.5%;
+}
+
+.filter-wrapper {
+    width: 27%;
+}
+
+.list-wrapper {
+    top:385px;
+}
+
 }

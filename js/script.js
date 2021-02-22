@@ -13,7 +13,7 @@ inputField.addEventListener('keyup', function (e) {
     if (e.keyCode == 13) {
 
         if(inputField.value !== ' ') {
-            
+
         //Create a new div
         let newActivity = document.createElement('div');
         //Adding the new div to the wrapper that surrounds the input field. 
