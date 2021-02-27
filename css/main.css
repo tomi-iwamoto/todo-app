@@ -13,7 +13,7 @@ main {
     justify-content: center;
     align-items: center;
 }
-
+  
 header {
     width: 100%;
     display: flex;
@@ -99,9 +99,6 @@ input {
     color:rgb(87, 87, 87);
 }
 
-.active {
-    display:block;
-}
 
 .remove {
     display:none;
@@ -151,10 +148,13 @@ input {
 
 }
 
+#clear:hover {
+    cursor: pointer;
+}
+
 
 /*-----------classlist styles-----------*/
-
-.new-div-style {
+.active {
     background-color: white;
     padding:15px 10px;
     width: 80%;
@@ -164,8 +164,12 @@ input {
     align-items: center;
 }
 
-
 .icon {
+    width: 20px;
+    height:20px;
+}
+
+.check {
     width: 20px;
     height:20px;
 }
@@ -227,7 +231,7 @@ input {
     top:144px;
 }
 
-.new-div-style {
+.active {
     background-color: white;
     padding:17px 12px;
     width: 51%;
@@ -316,8 +320,8 @@ input {
     width: 27%;
 }
 
-.new-div-style {
-    width: 25.5%;
+.active {
+    width: 25.6%;
 }
 
 .filter-wrapper {
