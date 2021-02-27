@@ -68,25 +68,43 @@ inputField.addEventListener('keyup', function (e) {
                 //Attaching the cross icon to the new div
                 newActivity.append(cross);
 
-                        //Add an event listener that will remove individual newActivity div when the cross icon is clicked
-                        cross.addEventListener('click', function (e) {
+                        // //Add an event listener that will remove individual newActivity div when the cross icon is clicked
+                        // cross.addEventListener('click', function (e) {
 
-                            console.log(e);
+                        //     console.log(e);
 
-                            newActivity.style.display = "none";
-                            newActivity.classList.remove = "active";
+                        //     newActivity.style.display = "none";
+                        //     newActivity.classList.remove = "active";
 
-                        })
+                            
+
+                        // })
 
         
                 //SETTING UP THE COUNTER
                 //Getting at all the new created divs which have the added class of "active"
                 let newDiv = document.querySelectorAll('.active');
+                //Getting the array from the newDiv nodelist
                 let newDivArray = Array.from(newDiv);
-                // //GETTING THE INNER TEXT OF THE COUNTER
+                //GETTING THE INNER TEXT OF THE COUNTER
                 let activeClassLength = newDivArray.length;
-                // //This tells the counter that the display text will be the number of divs with "active" classes
+                //This tells the counter that the display text will be the number of divs with "active" classes
                 counter.innerText = activeClassLength + " items left";
+
+
+                        //Add an event listener that will remove individual newActivity div when the cross icon is clicked
+                        cross.addEventListener('click', function (e) {
+
+                            newActivity.classList.remove = "active";
+                            // newActivity.style.display = "none";
+
+                            listContainer.removeChild(newActivity);
+
+                            //The newDivArray.length - gives me the number of the index of the element that I click on. Not the total length, or number of elements in the array.
+                            alert(newDivArray.length);
+
+                            
+                        })
 
 
 
