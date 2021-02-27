@@ -12,6 +12,7 @@ inputField.addEventListener('keyup', function (e) {
 
         if(inputField.value !== ' ') {
 
+
                 //CREATE NEW DIV
                 let newActivity = document.createElement('div');
                 //Adding the new div to the wrapper that surrounds the input field. 
@@ -38,7 +39,6 @@ inputField.addEventListener('keyup', function (e) {
                 //The source of the img will be img/circle.png
                 circle.setAttribute('src', 'img/circle.png');
                 circle.classList.add('icon');
-                circle.classList.add('show');
                 //Placing IMG element inside the circle wrap div
                 circleWrap.append(circle);
                 //Used flexbox in order to position both the circle icon and the answer text towards the left of the new div
@@ -68,45 +68,35 @@ inputField.addEventListener('keyup', function (e) {
                 //Attaching the cross icon to the new div
                 newActivity.append(cross);
 
-                        // //Add an event listener that will remove individual newActivity div when the cross icon is clicked
-                        // cross.addEventListener('click', function (e) {
-
-                        //     console.log(e);
-
-                        //     newActivity.style.display = "none";
-                        //     newActivity.classList.remove = "active";
-
-                            
-
-                        // })
-
         
-                //SETTING UP THE COUNTER
+                // //SETTING UP THE COUNTER
                 //Getting at all the new created divs which have the added class of "active"
                 let newDiv = document.querySelectorAll('.active');
                 //Getting the array from the newDiv nodelist
                 let newDivArray = Array.from(newDiv);
                 //GETTING THE INNER TEXT OF THE COUNTER
                 let activeClassLength = newDivArray.length;
-                //This tells the counter that the display text will be the number of divs with "active" classes
+                //This tells the counter that the display text will be the number of divs with "active" classes -- It will add upward as I add more activities
                 counter.innerText = activeClassLength + " items left";
 
 
                         //Add an event listener that will remove individual newActivity div when the cross icon is clicked
-                        cross.addEventListener('click', function (e) {
+                        //Also sets the counter as activities are removed - the counter number will go down. 
+                        cross.addEventListener('click', function () {
 
-                            newActivity.classList.remove = "active";
-                            // newActivity.style.display = "none";
+                            let newDiv = document.querySelectorAll('.active');
+                            let newDivArray = Array.from(newDiv);
+                            //The activeClassLength - seemed as it was giving me the number of the index of the element that I click on. Not the total length or number of elements in the array.
+                            //But now that I'm redifining the elements (newDiv, newDivArray, activeClassLength) in this function it will work
+                            let activeClassLength = newDivArray.length;
 
+                            //Remove the created element from the list container when cross icon is clicked
                             listContainer.removeChild(newActivity);
 
-                            //The newDivArray.length - gives me the number of the index of the element that I click on. Not the total length, or number of elements in the array.
-                            alert(newDivArray.length);
-
+                            //This sets the number of the counter 
+                            counter.innerText = activeClassLength -1 + " items left";
                             
                         })
-
-
 
 
                         //ADDING EVENT LISTENER TO THE CIRCLE ICON
@@ -155,9 +145,3 @@ inputField.addEventListener('keyup', function (e) {
 })
 
 
-
-
-
-//This tells the counter that the display text will be the number of divs with "active" classes
-// counter.innerText = newDiv.length + " items left";
-                

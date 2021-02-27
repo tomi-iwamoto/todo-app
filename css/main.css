@@ -165,6 +165,7 @@ input {
 }
 
 .icon {
+    display:block;
     width: 20px;
     height:20px;
 }
@@ -183,10 +184,6 @@ input {
 .cross-icon {
     width: 10px;
     height: 10px;
-}
-
-.show {
-    display:block;
 }
 
 .strike {
