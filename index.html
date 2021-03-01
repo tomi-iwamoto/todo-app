@@ -22,21 +22,48 @@
 <body>
 
   <header>
-    <img src="img/mobile-light.jpg" alt="mountains">
-    <h1>To Do</h1>
+    <img class="mobile-img" src="img/mobile-light.jpg" alt="mountains">
+    <!-- <img class="desktop-img" src="img/desktop-light.jpg" alt="mountains"> -->
+    
+    <div class="title-wrap">
+      <h1>To Do</h1>
+      <img id="moon" src="img/moon.svg" alt="moon icon" class="src">
+    </div>
   </header>
 
   <main>
     <div id="wrapper" class="input-wrapper">
-      <i id="add" class="far fa-circle"></i>  
+      <!-- <i id="add" class="far fa-circle"></i> -->
       <input id="activity" type="text" name="activity" placeholder="Create a new todo...">
-      <!-- <button id="add" type="submit">Add</button> -->
     </div>
 
-    <div id="list-container">
+    <div class="list-wrapper">
       <!--this is where the new divs and list will appear-->
+      <div id="list-container"></div>
+      
+      
+      <div class="counter-wrap">
+        <div class="counter">
+          <p id="counter">Items left</p>
+          <p id="clear">Clear Completed</p>
+        </div>
+      </div>
+
+
+      <div class="filter-wrapper">
+        <div class="filter">
+          <p>All</p>
+          <p>Active</p>
+          <p>Completed</p>
+        </div>
+      </div>
+
+
+
     </div>
-    <button id="clear" type="submit">Clear All</button>
+
+
+
 
   </main>
 
