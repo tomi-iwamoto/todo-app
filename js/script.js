@@ -10,138 +10,151 @@ inputField.addEventListener('keyup', function (e) {
     //This indicates that the if the event is by the "enter" key (key 13) then do the following:
     if (e.keyCode == 13) {
 
-        if(inputField.value !== ' ') {
+        if (inputField.value !== ' ') {
 
 
-                //CREATE NEW DIV
-                let newActivity = document.createElement('div');
-                //Adding the new div to the wrapper that surrounds the input field. 
-                listContainer.append(newActivity);
-                //Style the new div
-                newActivity.classList.add('active');
-            
-
-                //ADDING CHECK ICON
-                //First create the image element
-                let check = document.createElement('IMG');
-                check.setAttribute('src', 'img/check.png');
-                //Add the new check icon image to the new appended div
-                newActivity.append(check);
-                check.classList.add('icon');
-                check.style.display = 'none';
+            //CREATE NEW DIV
+            let newActivity = document.createElement('div');
+            //Adding the new div to the wrapper that surrounds the input field. 
+            listContainer.append(newActivity);
+            //Style the new div
+            newActivity.classList.add('active');
+            newActivity.id = "newActivityId";
 
 
-                //ADDING CIRCLE ICON
-                //First create a wrapper to surround the new IMG element which is the circle icon
-                let circleWrap = document.createElement('div');
-                //Create the new IMG element which will be the circle icon
-                let circle = document.createElement('IMG');
-                //The source of the img will be img/circle.png
-                circle.setAttribute('src', 'img/circle.png');
-                circle.classList.add('icon');
-                //Placing IMG element inside the circle wrap div
-                circleWrap.append(circle);
-                //Used flexbox in order to position both the circle icon and the answer text towards the left of the new div
-                circleWrap.classList.add('circle-icon-wrapper');
-                //Attaching the circle icon wrapper (circleWrap) -- which has the circle icon inside of it, to the new div
-                newActivity.append(circleWrap);
-
-                
-                //GETTING THE VALUE OF THE INPUT FIELD
-                //create a div wrapper around the input field answer -- which will help to place this element in the circle image wrapper
-                //Placing this element in this order of this event listener function so that the answer text will come after (to the right of) the circle icon in the div
-                let answerWrap = document.createElement('div');
-                answerWrap.style.marginLeft = "10px";
-                circleWrap.append(answerWrap);
-                //The new div will contain the answer that's been typed into the input field
-                let answer = inputField.value;
-                //The answerWrap will contain the answer from the input field
-                answerWrap.innerText = answer;
-                //This clears the input field once it's been submitted.
-                inputField.value = ' ';
+            //ADDING CHECK ICON -----> Indicates that the activity is done
+            //First create the image element
+            let check = document.createElement('IMG');
+            check.setAttribute('src', 'img/check.png');
+            //Add the new check icon image to the new appended div
+            newActivity.append(check);
+            check.classList.add('icon');
+            check.id = "checkId";
+            check.style.display = 'none';
 
 
-                //ADDING CROSS ICON
-                let cross = document.createElement('IMG');
-                cross.setAttribute('src', 'img/cross.png');
-                cross.classList.add('cross-icon');
-                //Attaching the cross icon to the new div
-                newActivity.append(cross);
+            //ADDING CIRCLE ICON -----> Indicates that the activity has not been completed
+            //First create a wrapper to surround the new IMG element which is the circle icon
+            let circleWrap = document.createElement('div');
+            //Create the new IMG element which will be the circle icon
+            let circle = document.createElement('IMG');
+            //The source of the img will be img/circle.png
+            circle.setAttribute('src', 'img/circle.png');
+            circle.classList.add('icon');
+            circle.id = "circleId";
+            //Placing IMG element inside the circle wrap div
+            circleWrap.append(circle);
+            //Used flexbox in order to position both the circle icon and the answer text towards the left of the new div
+            circleWrap.classList.add('circle-icon-wrapper');
+            //Attaching the circle icon wrapper (circleWrap) -- which has the circle icon inside of it, to the new div
+            newActivity.append(circleWrap);
 
-        
-                // //SETTING UP THE COUNTER
-                //Getting at all the new created divs which have the added class of "active"
+
+            //GETTING THE VALUE OF THE INPUT FIELD
+            //create a div wrapper around the input field answer -- which will help to place this element in the circle image wrapper
+            //Placing this element in this order of this event listener function so that the answer text will come after (to the right of) the circle icon in the div
+            let answerWrap = document.createElement('div');
+            answerWrap.style.marginLeft = "10px";
+            circleWrap.append(answerWrap);
+            //The new div will contain the answer that's been typed into the input field
+            let answer = inputField.value;
+            //The answerWrap will contain the answer from the input field
+            answerWrap.innerText = answer;
+            //This clears the input field once it's been submitted.
+            inputField.value = ' ';
+
+
+            //ADDING CROSS ICON -----> The cross that removes the activity
+            let cross = document.createElement('IMG');
+            cross.setAttribute('src', 'img/cross.png');
+            cross.classList.add('cross-icon');
+            //Attaching the cross icon to the new div
+            newActivity.append(cross);
+
+
+            //SETTING UP THE COUNTER
+            //Getting at all the new created divs which have the added class of "active"
+            let newDiv = document.querySelectorAll('.active');
+            //Getting the array from the newDiv nodelist
+            let newDivArray = Array.from(newDiv);
+            //Getting the number for the counter
+            let activeClassLength = newDivArray.length;
+            //This tells the counter that the display text will be the number of divs with "active" classes -- It will add upward as I add more activities
+            counter.innerText = activeClassLength + " items left";
+
+
+            //Add an event listener that will remove individual newActivity div when the cross icon is clicked
+            //Also sets the counter as activities are removed - the counter number will go down. 
+            cross.addEventListener('click', function () {
+
                 let newDiv = document.querySelectorAll('.active');
-                //Getting the array from the newDiv nodelist
                 let newDivArray = Array.from(newDiv);
-                //GETTING THE INNER TEXT OF THE COUNTER
+                //The activeClassLength - seemed as it was giving me the number of the index of the element that I click on. Not the total length or number of elements in the array.
+                //But now that I'm redifining the elements (newDiv, newDivArray, activeClassLength) in this function it will work
                 let activeClassLength = newDivArray.length;
-                //This tells the counter that the display text will be the number of divs with "active" classes -- It will add upward as I add more activities
-                counter.innerText = activeClassLength + " items left";
+
+                //Remove the created element from the list container when cross icon is clicked
+                listContainer.removeChild(newActivity);
+
+                //This sets the number of the counter 
+                counter.innerText = activeClassLength - 1 + " items left";
+
+            })
 
 
-                        //Add an event listener that will remove individual newActivity div when the cross icon is clicked
-                        //Also sets the counter as activities are removed - the counter number will go down. 
-                        cross.addEventListener('click', function () {
+            //ADDING EVENT LISTENER TO THE CIRCLE ICON
+            //This event listener will take away the circle icon and replace it with the check mark icon
+            //This will also put a strike through line to over the word to indicate a finished activity
+            circle.addEventListener('click', function (e) {
 
-                            let newDiv = document.querySelectorAll('.active');
-                            let newDivArray = Array.from(newDiv);
-                            //The activeClassLength - seemed as it was giving me the number of the index of the element that I click on. Not the total length or number of elements in the array.
-                            //But now that I'm redifining the elements (newDiv, newDivArray, activeClassLength) in this function it will work
-                            let activeClassLength = newDivArray.length;
+                circle.style.display = "none";
+                check.style.display = "block";
 
-                            //Remove the created element from the list container when cross icon is clicked
-                            listContainer.removeChild(newActivity);
+                circleWrap.append(check);
+                circleWrap.append(answerWrap);
+                answerWrap.classList.toggle('strike');
 
-                            //This sets the number of the counter 
-                            counter.innerText = activeClassLength -1 + " items left";
-                            
-                        })
+                //Create an event listener to the words "clear completed" in the counter section so that only the activities that have been completed will be removed
+                clear.addEventListener('click', function () {
 
 
-                        //ADDING EVENT LISTENER TO THE CIRCLE ICON
-                        //This event listener will take away the circle icon and replace it with the check mark icon
-                        //This will also put a strike through line to over the word to indicate a finished activity
-                        circle.addEventListener('click', function (e) {
+                    //If the check mark is display:block
+                    if (answerWrap.className == "strike") {
 
-                            circle.style.display = "none";
-                            check.style.display = "block";
-                            
-                            circleWrap.append(check);
-                            circleWrap.append(answerWrap);
-                            answerWrap.classList.toggle('strike');
+                        //Then remove the newActivity div
+                        listContainer.removeChild(newActivity);
 
-                            //Create an event listener to the words "clear completed" in the counter section so that only the activities that have been completed will be removed
-                            clear.addEventListener('click', function () {
+                        let newDiv = document.querySelectorAll('.active');
+                        let newDivArray = Array.from(newDiv);
 
-                                //If the check mark is display:block
-                                if (answerWrap.className == "strike") {
+                        /*Now that we have the array from all the created divs we cant to get
+                        the amount of remaining divs using .length*/
+                        let remainingDivNum = newDivArray.length;
 
-                                    //Then remove the newActivity div
-                                    newActivity.style.display = "none";
+                        counter.innerText = remainingDivNum + " items left";
 
-                                } 
-
-                            })
-
-                        });
+                    }
 
 
-                //ADDING EVENT LISTENER TO THE CHECK MARK ICON
-                //This event listener will remove the check icon and replace it with the circle icon
-                //This will also toggle the strike through style on the activity word. 
-                check.addEventListener('click', function (e) {
+                })
 
-                    check.style.display = "none";
-                    circle.style.display = "block";
-                    answerWrap.classList.toggle('strike');
+            });
 
-                });
+
+            //ADDING EVENT LISTENER TO THE CHECK MARK ICON
+            //This event listener will remove the check icon and replace it with the circle icon
+            //This will also toggle the strike through style on the activity word. 
+            check.addEventListener('click', function (e) {
+
+                check.style.display = "none";
+                circle.style.display = "block";
+                answerWrap.classList.toggle('strike');
+
+            });
 
 
 
         }
     }
 })
-
 
